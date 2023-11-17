@@ -3,9 +3,9 @@ extends layout
 block content
   h1= title
   div(class="info")
-    p Welcome to Proust questionaire answer generator. 
+    p Welcome to Proust questionaire markdown generator. 
       br 
-      span(class="extra_info") More information about 
+      span(class="extra_info") This will generate your answers as markdown. More information about 
       a(href="https://en.wikipedia.org/wiki/Proust_Questionnaire" class="extra_info") Proust questionaires (wiki)
   each question, key in questions.questions 
     div(class="question hidden" id="question_" + key )
@@ -22,5 +22,8 @@ block content
 
   script.
     var all_questions = !{JSON.stringify(questions.questions)}
+
+  div(id="bar")
+    div(id="progress" class="hidden")
 
   script(src='/javascripts/questionaire.js')  

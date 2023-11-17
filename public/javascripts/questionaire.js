@@ -1,3 +1,4 @@
+var question_length = 2.941;
 const button = document.getElementById('theButton');
 button.addEventListener('click', function(e) {
   var next = parseInt(this.dataset.next);
@@ -12,11 +13,15 @@ button.addEventListener('click', function(e) {
     sofar_raw = window.sessionStorage.removeItem('proust_answers')
   } else {
     var prev = next - 1;
+    var bar = document.getElementById('progress');
     if (next == 1) {
+      bar.classList.remove('hidden');
       this.innerHTML = "Next question";
-    }
+    } 
 
     if (next > 1) {
+      var current_length = question_length * prev;
+      bar.style.width = current_length + "%";
       document.getElementById('question_' + prev).classList.add('hidden');
     } 
     if (next == 35) {
@@ -47,7 +52,7 @@ function generateMarkdown() {
     var current = sofar[i];
     if (typeof current === "string" && current.length > 0) {
       var question_id = i + 1;
-      output = output + "###" + all_questions[question_id] + "<br />";
+      output = output + "### " + all_questions[question_id] + "<br />";
       output = output + current + "<br /><br />";
     } 
   }
