@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  div(class="info")
+    p Welcome to Proust questionaire answer generator. 
+      br 
+      span(class="extra_info") More information about 
+      a(href="https://en.wikipedia.org/wiki/Proust_Questionnaire" class="extra_info") Proust questionaires (wiki)
+  each question, key in questions.questions 
+    div(class="question hidden" id="question_" + key )
+      label( for="question_" + key class="sr-only") #{question} 
+      br
+      textarea( id="answer_" + key name="question_" + key class="form-control question_area" placeholder="" value="" )
+      br
+
+  div(class="hidden result" id="result")
+  
+  button(id="theButton" data-next=1 class="btn") Start questionaire 
+
+  a(href="/" class="hidden" id="reload_link") Reload 
+
+  script.
+    var all_questions = !{JSON.stringify(questions.questions)}
+
+  script(src='/javascripts/questionaire.js')  
